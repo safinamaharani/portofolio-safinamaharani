@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safina Tri Maharani — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,900;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     TOKEN — Kalibrasi Elegan: charcoal + navy + olive + brass
+     Display: Fraunces (serif, artistik) · Body: Inter (bersih)
+     Utility/Readout: IBM Plex Mono (instrumentasi, angka digital)
+  ============================================================ */
+  :root{
+    --charcoal:      #1A1812;
+    --charcoal-2:    #221F18;
+    --navy:           #171E27;
+    --olive:          #43462F;
+    --olive-light:    #5B5E3E;
+    --paper:          #ECE5D3;
+    --paper-2:        #F4EFE1;
+    --ink:            #14130E;
+    --cream:          #EDE6D6;
+    --cream-dim:      #C9C0AA;
+    --brass:          #C4923F;
+    --brass-dim:      #8F6B30;
+    --line:           #100F0B;
+    --shadow-color:   #100F0B;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --border: 3px solid var(--line);
+    --border-thick: 4px solid var(--line);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; }
+  ::selection{ background: var(--brass); color: var(--ink); }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:2px;
+    background: currentColor;
+    display:inline-block;
+  }
+
+  /* ---------- Ruler / tick divider — device instrumentasi ---------- */
+  .ruler{
+    height: 22px;
+    width: 100%;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--line) 0 2px,
+      transparent 2px 28px
+    );
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-size: auto 60%;
+    border-top: var(--border);
+    border-bottom: var(--border);
+  }
+  .ruler.on-dark{ border-color: var(--brass); background-image: repeating-linear-gradient(90deg, var(--brass) 0 2px, transparent 2px 28px); opacity:.6; }
+
+  /* ================= NAVBAR ================= */
+  header.nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: var(--charcoal);
+    color: var(--cream);
+    border-bottom: var(--border-thick);
+  }
+  .nav-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family: var(--font-mono);
+    font-weight:600;
+    letter-spacing: .04em;
+  }
+  .brand-mark{
+    width:38px; height:38px;
+    background: var(--brass);
+    border: var(--border);
+    box-shadow: 4px 4px 0 var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-weight:900;
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  nav.links{
+    display:flex;
+    gap: 30px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  nav.links a{
+    text-decoration:none;
+    position:relative;
+    padding-bottom:3px;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute; left:0; bottom:-4px;
+    width:0; height:2px;
+    background: var(--brass);
+    transition: width .25s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+
+  .burger{
+    display:none;
+    background:none;
+    border: var(--border);
+    border-color: var(--cream);
+    color: var(--cream);
+    width:42px; height:38px;
+    font-family: var(--font-mono);
+    cursor:pointer;
+  }
+
+  /* ================= HERO ================= */
+  section.hero{
+    background: var(--charcoal);
+    color: var(--cream);
+    position: relative;
+    background-image:
+      linear-gradient(var(--charcoal-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--charcoal-2) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .hero-inner{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 88px 32px 100px;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items:center;
+  }
+  .hero-eyebrow{ color: var(--brass); margin-bottom: 22px; }
+  h1.headline{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 5.2vw, 4rem);
+    line-height: 1.08;
+    margin: 0 0 26px;
+    letter-spacing: -0.01em;
+  }
+  h1.headline em{
+    font-style: italic;
+    color: var(--brass);
+  }
+  p.hero-sub{
+    font-size: 1.08rem;
+    color: var(--cream-dim);
+    max-width: 46ch;
+    margin: 0 0 36px;
+  }
+  .cta-row{ display:flex; gap:18px; flex-wrap:wrap; }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 15px 26px;
+    border: var(--border);
+    display:inline-block;
+    box-shadow: 6px 6px 0 var(--line);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--line); }
+  .btn:active{ transform: translate(0,0); box-shadow: 3px 3px 0 var(--line); }
+  .btn-primary{ background: var(--brass); color: var(--ink); border-color: var(--line); }
+  .btn-ghost{ background: transparent; color: var(--cream); border-color: var(--cream); box-shadow: 6px 6px 0 var(--brass-dim); }
+  .btn-ghost:hover{ box-shadow: 9px 9px 0 var(--brass-dim); }
+
+  /* Gauge / dial — signature graphic */
+  .gauge-panel{
+    border: var(--border-thick);
+    background: var(--navy);
+    box-shadow: 12px 12px 0 var(--brass-dim);
+    padding: 28px;
+    position: relative;
+  }
+  .gauge-panel svg{ width:100%; height:auto; }
+  .gauge-caption{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-align:center;
+    margin-top: 14px;
+    border-top: 1px dashed var(--olive-light);
+    padding-top: 12px;
+  }
+
+  /* ================= SECTION GENERIC ================= */
+  section.block{ padding: 96px 0; }
+  section.block.dark{ background: var(--navy); color: var(--cream); }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head .eyebrow{ color: var(--brass-dim); margin-bottom: 16px; }
+  section.block.dark .section-head .eyebrow{ color: var(--brass); }
+  h2.section-title{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+    margin: 0;
+    line-height:1.15;
+  }
+  p.section-lede{
+    margin-top:16px;
+    color: #4B4A40;
+    max-width: 56ch;
+  }
+  section.block.dark p.section-lede{ color: var(--cream-dim); }
+
+  /* ================= ABOUT ================= */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    align-items:center;
+  }
+  .polaroid{
+    background: var(--paper-2);
+    border: var(--border-thick);
+    box-shadow: 10px 10px 0 var(--line);
+    padding: 18px 18px 60px;
+    transform: rotate(-2.5deg);
+    max-width: 340px;
+  }
+  .polaroid .frame{
+    aspect-ratio: 4/5;
+    background:
+      repeating-linear-gradient(135deg, #2B2A24 0 2px, #34322A 2px 4px);
+    border: 2px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .polaroid .frame::after{
+    content:"◎";
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 3rem;
+    color: rgba(236,229,211,0.35);
+  }
+  .polaroid figcaption{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    text-align:center;
+    margin-top: 16px;
+    color: var(--ink);
+  }
+  .about-copy p{ margin: 0 0 20px; font-size: 1.02rem; }
+  .about-copy strong{ background: linear-gradient(transparent 60%, var(--brass) 60%); font-weight:600; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 26px; }
+  .chip{
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing:.04em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border: 2px solid var(--line);
+    background: var(--paper-2);
+  }
+
+  /* ================= PROJECTS ================= */
+  .project-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .card{
+    background: var(--paper-2);
+    border: var(--border-thick);
+    box-shadow: 8px 8px 0 var(--line);
+    display:flex;
+    flex-direction:column;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{ transform: translate(-4px,-4px); box-shadow: 12px 12px 0 var(--line); }
+  .card-strip{ height: 12px; }
+  .card-strip.c1{ background: var(--brass); }
+  .card-strip.c2{ background: var(--olive-light); }
+  .card-strip.c3{ background: var(--navy); }
+  .card-body{ padding: 28px; flex:1; display:flex; flex-direction:column; }
+  .card-tag{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing:.08em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    margin-bottom: 14px;
+  }
+  h3.card-title{
+    font-family: var(--font-display);
+    font-size: 1.32rem;
+    font-weight:700;
+    margin: 0 0 12px;
+    line-height:1.25;
+  }
+  .card-desc{ font-size: 0.95rem; color:#3E3D34; flex:1; }
+  .card-meta{
+    margin-top:20px;
+    padding-top:14px;
+    border-top: 2px dashed var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing:.05em;
+    color: var(--brass-dim);
+  }
+
+  /* ================= SKILLS ================= */
+  .skills-note{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--cream-dim);
+    margin-bottom: 40px;
+    max-width: 60ch;
+  }
+  .skill-row{
+    display:grid;
+    grid-template-columns: 260px 1fr 62px;
+    gap: 22px;
+    align-items:center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--olive);
+  }
+  .skill-row:first-of-type{ border-top: 1px solid var(--olive); }
+  .skill-name{ font-weight:600; font-size:0.98rem; }
+  .skill-tier{
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing:.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display:block;
+    margin-top:4px;
+  }
+  .meter{
+    position:relative;
+    height: 16px;
+    background: var(--charcoal-2);
+    border: 2px solid var(--olive-light);
+    overflow:hidden;
+  }
+  .meter::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, transparent 0 16px, rgba(0,0,0,0.35) 16px 18px);
+    z-index:2;
+  }
+  .meter-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--brass-dim), var(--brass));
+    width: var(--level);
+  }
+  .skill-val{
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    text-align:right;
+    color: var(--cream-dim);
+  }
+
+  /* ================= CONTACT / FOOTER ================= */
+  footer.contact{
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 96px 0 0;
+  }
+  .contact-inner{ text-align:center; max-width: 700px; margin: 0 auto; }
+  .contact-inner .eyebrow{ color: var(--brass); justify-content:center; margin-bottom:20px; }
+  h2.contact-title{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    line-height:1.15;
+    margin: 0 0 22px;
+  }
+  .contact-inner p{ color: var(--cream-dim); font-size:1.05rem; margin-bottom:40px; }
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom: 80px;
+  }
+  .contact-link{
+    font-family: var(--font-mono);
+    font-size:0.85rem;
+    text-decoration:none;
+    padding: 14px 24px;
+    border: 2px solid var(--cream);
+    box-shadow: 5px 5px 0 var(--brass);
+    transition: transform .15s ease;
+  }
+  .contact-link:hover{ transform: translate(-3px,-3px); }
+  .foot-bottom{
+    border-top: var(--border);
+    border-color: var(--olive);
+    padding: 22px 32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cream-dim);
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  /* ================= REVEAL ANIM ================= */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  :focus-visible{ outline: 3px solid var(--brass); outline-offset: 2px; }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px){
+    .hero-inner{ grid-template-columns: 1fr; padding-top:56px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .polaroid{ margin: 0 auto; }
+    .project-grid{ grid-template-columns: 1fr; }
+    .skill-row{ grid-template-columns: 1fr; gap:8px; }
+    .skill-val{ text-align:left; }
+  }
+  @media (max-width: 720px){
+    nav.links{
+      position:fixed; inset: 66px 0 0 0;
+      background: var(--charcoal);
+      flex-direction:column;
+      padding: 34px 32px;
+      gap: 26px;
+      font-size: 1rem;
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      z-index: 40;
+    }
+    nav.links.open{ transform: translateX(0); }
+    .burger{ display:block; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="brand-mark">S</span>
+        SAFINA T. MAHARANI
+      </div>
+      <nav class="links" id="navLinks">
+        <a href="#about">Tentang</a>
+        <a href="#projects">Proyek</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+      <button class="burger" id="burgerBtn" aria-label="Buka menu">≡</button>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow hero-eyebrow">Teknik Energi Terbarukan · UPI</div>
+        <h1 class="headline">Membaca Sinyal, Merancang Energi, <em>Membingkai Momen.</em></h1>
+        <p class="hero-sub">Mahasiswa S1 Teknik Energi Terbarukan yang menaruh presisi pada instrumentasi dan sistem pengukuran — serta ketajaman visual pada setiap bingkai yang saya susun.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">Lihat Proyek</a>
+          <a class="btn btn-ghost" href="#about">Tentang Saya</a>
+        </div>
+      </div>
+
+      <div class="gauge-panel">
+        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi gauge instrumentasi bertuliskan Presisi, Energi, Visual, dan Sinyal">
+          <circle cx="160" cy="160" r="138" fill="var(--charcoal-2)" stroke="var(--brass)" stroke-width="4"/>
+          <circle cx="160" cy="160" r="112" fill="none" stroke="var(--olive-light)" stroke-width="1.5" stroke-dasharray="2 6"/>
+
+          <!-- minor ticks -->
+          <g stroke="var(--cream-dim)" stroke-width="2">
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(22.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(45 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(67.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(112.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(135 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(157.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(202.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(225 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(247.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(292.5 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(315 160 160)"/>
+            <line x1="160" y1="35" x2="160" y2="48" transform="rotate(337.5 160 160)"/>
+          </g>
+          <!-- major ticks -->
+          <g stroke="var(--brass)" stroke-width="4">
+            <line x1="160" y1="26" x2="160" y2="50"/>
+            <line x1="160" y1="26" x2="160" y2="50" transform="rotate(90 160 160)"/>
+            <line x1="160" y1="26" x2="160" y2="50" transform="rotate(180 160 160)"/>
+            <line x1="160" y1="26" x2="160" y2="50" transform="rotate(270 160 160)"/>
+          </g>
+
+          <text x="160" y="70" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--cream)">PRESISI</text>
+          <text x="248" y="164" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--cream)">ENERGI</text>
+          <text x="160" y="260" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--cream)">VISUAL</text>
+          <text x="72" y="164" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5" fill="var(--cream)">SINYAL</text>
+
+          <!-- needle -->
+          <g>
+            <line x1="160" y1="160" x2="111" y2="90" stroke="var(--brass)" stroke-width="6" stroke-linecap="round"/>
+            <line x1="160" y1="160" x2="182" y2="192" stroke="var(--brass-dim)" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="160" cy="160" r="15" fill="var(--brass)" stroke="var(--line)" stroke-width="3"/>
+          </g>
+        </svg>
+        <div class="gauge-caption">Kalibrasi arah: presisi teknik bertemu kepekaan visual</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ruler"></div>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Tentang Saya</div>
+        <h2 class="section-title">Presisi Teknik, Kepekaan Visual</h2>
+      </div>
+
+      <div class="about-grid">
+<div class="frame">
+  <img src="cinta.jpg" alt="Safina Tri Maharani" style="width:100%;height:100%;object-fit:cover;">
+</div>
+
+        <div class="about-copy reveal">
+          <p>Saya adalah mahasiswa <strong>S1 Teknik Energi Terbarukan</strong> di Universitas Pendidikan Indonesia, tempat saya mengasah cara berpikir teknis di balik instrumentasi, sistem pengukuran, dan elektronika — sembari terus mendalami bagaimana ilmu ini dapat memberi dampak nyata bagi masa depan energi berkelanjutan Indonesia.</p>
+          <p>Di luar kelas, saya memilih untuk melayani dan bertumbuh: sebagai <strong>Caraka Muda Universitas Pendidikan Indonesia</strong> bidang kunjungan, serta melalui keterlibatan dalam program beasiswa dan pengembangan diri seperti <strong>IGGS Telkom University</strong>. Bagi saya, presisi teknik dan kepekaan estetika bukan dua hal yang terpisah — keduanya bertemu dalam cara saya memandang setiap persoalan, sekecil apa pun.</p>
+          <div class="chip-row">
+            <span class="chip">Universitas Pendidikan Indonesia</span>
+            <span class="chip">Caraka Muda UPI</span>
+            <span class="chip">IGGS Telkom University</span>
+            <span class="chip">Energi Berkelanjutan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="block dark" id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Proyek Pilihan</div>
+        <h2 class="section-title">Proyek yang Merepresentasikan Cara Saya Berpikir</h2>
+        <p class="section-lede">Dari papan sirkuit hingga bingkai foto — tiga proyek berikut menautkan rekayasa teknis dengan cara pandang yang lebih personal.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="card reveal">
+          <div class="card-strip c1"></div>
+          <div class="card-body">
+            <div class="card-tag">Instrumentasi &amp; Energi</div>
+            <h3 class="card-title">Monitoring Sistem Solar PV</h3>
+            <p class="card-desc">Merancang diagram blok dan flowchart sistem monitoring panel surya secara menyeluruh — dari sensor intensitas cahaya, tegangan, dan arus, hingga pemrosesan sinyal dan visualisasi data yang informatif.</p>
+            <div class="card-meta">Maret 2026</div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-strip c2"></div>
+          <div class="card-body">
+            <div class="card-tag">Sistem Pengukuran</div>
+            <h3 class="card-title">Bedah Arsitektur Sistem Pengukuran Digital</h3>
+            <p class="card-desc">Membedah arsitektur termometer medis digital dan electrical meter, menelusuri alur dari sensor, signal conditioning, proses konversi, hingga tampilan akhir pada layar digital.</p>
+            <div class="card-meta">Maret 2026</div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-strip c3"></div>
+          <div class="card-body">
+            <div class="card-tag">Fotografi &amp; Visual</div>
+            <h3 class="card-title">Proyek Konsep Fotografi Polaroid</h3>
+            <p class="card-desc">Merancang konsep visual bergaya Polaroid dengan pencahayaan flash yang konsisten dan intentional blur, sembari menjaga konsistensi ekspresi subjek dan latar gorden putih di setiap bingkai.</p>
+            <div class="card-meta">September 2025</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="block" id="skills" style="background:var(--charcoal); color:var(--cream);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="color:var(--brass);">Keahlian &amp; Kemampuan</div>
+        <h2 class="section-title">Kalibrasi Kemampuan</h2>
+        <p class="skills-note">Skala di bawah merupakan kalibrasi personal — cara saya memetakan tingkat penguasaan di tiap bidang, bukan skor baku.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-row">
+          <div class="skill-name">Teknik Elektro &amp; Rangkaian<span class="skill-tier">Mahir</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:88%"></div></div>
+          <div class="skill-val">88%</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name">Fisika Pengukuran &amp; Instrumentasi<span class="skill-tier">Mahir</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:90%"></div></div>
+          <div class="skill-val">90%</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name">Kalkulus &amp; Matematika Terapan<span class="skill-tier">Kompeten</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:82%"></div></div>
+          <div class="skill-val">82%</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name">Analisis &amp; Pemecahan Masalah Teknis<span class="skill-tier">Mahir</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:85%"></div></div>
+          <div class="skill-val">85%</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name">Fotografi &amp; Storytelling Visual<span class="skill-tier">Kompeten</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:80%"></div></div>
+          <div class="skill-val">80%</div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name">Bahasa Jepang (Dasar–Menengah)<span class="skill-tier">Berkembang</span></div>
+          <div class="meter"><div class="meter-fill" style="--level:55%"></div></div>
+          <div class="skill-val">55%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT / FOOTER ================= -->
+  <footer class="contact" id="contact">
+    <div class="wrap contact-inner reveal">
+      <div class="eyebrow">Mari Terhubung</div>
+      <h2 class="contact-title">Mari Berdiskusi, Berkolaborasi, atau Sekadar Bertukar Ide.</h2>
+      <p>Saya percaya ide terbaik lahir dari perbincangan lintas bidang — antara teknik, energi, dan seni. Jika Anda punya proyek, riset, atau sekadar gagasan yang ingin didiskusikan, jangan ragu untuk menyapa.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:safina.trimaharani@email.com">✉ safina.trimaharani@email.com</a>
+        <a class="contact-link" href="#" target="_blank" rel="noopener">in/safinatrimaharani</a>
+        <a class="contact-link" href="https://www.instagram.com/ssafiinm?igsh=MThvcHU4YWFkbWdiaQ==" target="_blank" rel="noopener">ssafiinm</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Safina Tri Maharani.</span>
+      <span>Dirancang dengan presisi dan rasa.</span>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting){
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
+
+</body>
+</html>
